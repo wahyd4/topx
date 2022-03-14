@@ -1,4 +1,4 @@
-FROM golang:alpine AS build
+FROM golang:alpine
 
 RUN apk add --no-cache git openssh
 
@@ -10,17 +10,5 @@ WORKDIR /app
 COPY . .
 
 RUN go mod download
-RUN go build -o bin/app main.go
 
-FROM alpine:edge
-
-RUN adduser -D -u 1000 junv
-
-WORKDIR /home/junv
-
-USER junv
-
-COPY --from=build /app/bin/app .
-COPY --from=build /app/test*.txt ./
-
-CMD [ "/home/junv/app" ]
+CMD ["go", "run", "main.go" ]
