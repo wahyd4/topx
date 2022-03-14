@@ -31,7 +31,7 @@ func CalculateLargestNumbers(filePath string, topX int) ([]int, error) {
 	}
 	scanner := bufio.NewScanner(file)
 
-	largestNumbersHeap := LargestNumbersHeap{}
+	topXHeap := LargestNumbersHeap{}
 
 	for scanner.Scan() {
 		text := scanner.Text()
@@ -39,13 +39,13 @@ func CalculateLargestNumbers(filePath string, topX int) ([]int, error) {
 		if err != nil {
 			return []int{}, fmt.Errorf("fail to parse text %s with error %w", text, err)
 		}
-		if len(largestNumbersHeap) < topX {
-			largestNumbersHeap = append(largestNumbersHeap, number)
-			heap.Init(&largestNumbersHeap)
+		if len(topXHeap) < topX {
+			topXHeap = append(topXHeap, number)
+			heap.Init(&topXHeap)
 		} else {
-			calculateIncomingNumber(&largestNumbersHeap, number)
+			calculateIncomingNumber(&topXHeap, number)
 		}
 	}
-	heap.Init(&largestNumbersHeap)
-	return largestNumbersHeap, nil
+
+	return topXHeap, nil
 }

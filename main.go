@@ -18,13 +18,12 @@ func main() {
 	if err != nil {
 		fmt.Println("TOPX must be a number")
 	}
-
 	topNumbers, err := calculator.CalculateLargestNumbers(filePath, topNumber)
 	if err != nil {
 		fmt.Println("Oops: " + err.Error())
 		os.Exit(1)
 	}
-	fmt.Printf("Top %d numbers are: %v", topNumber, topNumbers)
+	fmt.Printf("Top %d numbers for file %s are: %v", topNumber, filePath, topNumbers)
 }
 
 func getEnvWithDefault(key, defaultValue string) string {
