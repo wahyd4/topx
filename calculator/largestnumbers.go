@@ -47,5 +47,5 @@ func CalculateLargestNumbers(filePath string, topX int) ([]int, error) {
 		}
 	}
 
-	return topXHeap, nil
+	return sortDesc(topXHeap), nil
 }

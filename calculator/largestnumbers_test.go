@@ -1,9 +1,8 @@
 package calculator
 
 import (
+	"reflect"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCalculateLargestNumbers(t *testing.T) {
@@ -23,7 +22,7 @@ func TestCalculateLargestNumbers(t *testing.T) {
 				filePath: "../test1.txt",
 				topX:     3,
 			},
-			want:    []int{0, 2, 5},
+			want:    []int{5, 2, 0},
 			wantErr: false,
 		},
 		{
@@ -41,7 +40,7 @@ func TestCalculateLargestNumbers(t *testing.T) {
 				filePath: "../test3.txt",
 				topX:     4,
 			},
-			want:    []int{23435, 38949, 11111, 11111},
+			want:    []int{38949, 23435, 11111, 11111},
 			wantErr: false,
 		},
 		{
@@ -50,7 +49,7 @@ func TestCalculateLargestNumbers(t *testing.T) {
 				filePath: "../test2.txt",
 				topX:     5,
 			},
-			want:    []int{1, 9, 3, 2},
+			want:    []int{9, 3, 2, 1},
 			wantErr: false,
 		},
 		{
@@ -88,7 +87,7 @@ func TestCalculateLargestNumbers(t *testing.T) {
 				t.Errorf("CalculateLargestNumbers() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !assert.ElementsMatch(t, got, tt.want) {
+			if err == nil && !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("test CalculateLargestNumbers() = %v, want %v", got, tt.want)
 			}
 		})

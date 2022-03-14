@@ -23,6 +23,7 @@ func main() {
 		fmt.Println("Oops: " + err.Error())
 		os.Exit(1)
 	}
+	
 	fmt.Printf("Top %d numbers for file %s are: %v", topNumber, filePath, topNumbers)
 }
 
